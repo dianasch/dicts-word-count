@@ -30,10 +30,16 @@ def count_words(file_name):
         for word in lst_of_line:
 
             #Add word to dictionary word_count
-            word_count[word] = word_count.get(word, 0) + 1 
+            current_word = word_count.get(word, 0)
+
+            #Determine if word is not capitalized and does not end in punct
+            if word[0].islower() == True and word[-1].isalpha() == True:
+
+                #If so, add to word_count
+                word_count[word] = current_word + 1 
 
             #Determine if word is capitalized and does not end in punctuation
-            if word[0].isupper() == True and word[-1].isalpha() == True:
+            elif word[0].isupper() == True and word[-1].isalpha() == True:
 
                 #Create variable called lower_word
                 #Lower first letter of word and concatenate with rest of word
@@ -42,7 +48,7 @@ def count_words(file_name):
                 #Add lower_word to word_count
                 #If lower_word not in word_count, add to word_count
                 word_count[lower_word] = word_count.get(word, 0) + 1
-                
+            
             #Determine if word ends in punctuation and is not capitalized 
             elif word[-1].isalpha() == False and word[0].isupper() == False:
 
@@ -57,30 +63,33 @@ def count_words(file_name):
                 lower_word_no_end = word[0].lower() + word[1:-1]
 
                 #Add lowercase word with no punctuation to word_count
-                word_count[lower_word_no_end] =
-                word_count.get(lower_word_no_end, 0) +1
+                word_count[lower_word_no_end] = word_count.get(lower_word_no_end, 0) +1
+
+            #Code below is first attempt to delete bad words afterwards
         
             #Determine if word in word_count is capitalized
-            if word[0].isupper() == True:
+            #if word[0].isupper() == True:
 
                 #If so, delete word
-                del word_count[word]
+                #del word_count[word]
                 
                 #Determine if word is capitalized and ends in punctuation
-                if word[-1].isalpha() == False:
+                #if word[-1].isalpha() == False:
 
                     #If so, continue
                     #Don't need to delete again
-                    continue
+                    #continue
 
             #Determine if word ends in puntuation and is not capitalized
-            elif word[-1].isalpha() == False:
+            #elif word[-1].isalpha() == False:
 
                 #If so, delete word
-                del word_count[word]
+                #del word_count[word]
 
     #Return dictionary of word_count
-    return word_count
+    for k, v in sorted(word_count.items()):
+        print(k, v)
+    
 
-#Call count_words function
-print(count_words(filename))
+count_words(filename)
+
