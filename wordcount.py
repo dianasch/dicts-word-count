@@ -1,11 +1,11 @@
 # import sys to pass arguments in the command line
 import sys
+import re
+import collections
 
 #Set argument at index 1 in command line to filename
 filename = sys.argv[1]
 
-import re
-import collections
 
 words = re.findall(r'\w+', open('test.txt').read().lower())
 print(collections.Counter(words))
@@ -101,13 +101,25 @@ def count_words(file_name):
     #Return dictionary of word_count sorted:
     #Descending by value
     #Ascending by key
-    sort_word_count = sorted(word_count.items(), key = lambda x: (-x[1], x[0]))
+    #sort_word_count = sorted(word_count.items(), key = lambda x: (-x[1], x[0]))
+
+    #Set variable word_items for items in word_dict (list of tuples)
+    word_items = word_count.items()
+
+    #Lambda function to sort by descending order for value and
+    #Ascending order for key
+    word_key = lambda x: (-x[1], x[0])
+
+    #Sort word_items by lambda function
+    sort_word_count = sorted(word_items, key = word_key)
 
     #Loop through sort_word_count
-    for i in sort_word_count:
+    for tuple in sort_word_count:
         
-        #Print key and value
-        print(i[0], i[1])
+        #Print key and value at each tuple
+        print(tuple[0], tuple[1])
+
+
 
 #Run count_words function
 count_words(filename)
