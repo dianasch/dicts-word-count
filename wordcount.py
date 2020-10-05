@@ -87,9 +87,16 @@ def count_words(file_name):
                 #del word_count[word]
 
     #Return dictionary of word_count
-    for k, v in sorted(word_count.items()):
-        print(k, v)
-    
+
+    #for k, v in sorted(word_count.items()):
+
+        #print(k, v)
+
+    sort_word_count = sorted(word_count.items(), key = lambda x: (-x[1], x[0]))
+
+    for i in sort_word_count:
+        
+        print(i[0], i[1])
 
 count_words(filename)
 
