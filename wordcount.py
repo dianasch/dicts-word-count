@@ -5,7 +5,10 @@ import sys
 filename = sys.argv[1]
 
 import re
+import collections
 
+words = re.findall(r'\w+', open('test.txt').read().lower())
+print(collections.Counter(words))
 
 def count_words(file_name):
     """Return a dictionary of the count of words in a text.
@@ -106,5 +109,6 @@ def count_words(file_name):
         #Print key and value
         print(i[0], i[1])
 
+#Run count_words function
 count_words(filename)
 
