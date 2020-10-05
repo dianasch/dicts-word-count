@@ -4,6 +4,9 @@ import sys
 #Set argument at index 1 in command line to filename
 filename = sys.argv[1]
 
+import re
+
+
 def count_words(file_name):
     """Return a dictionary of the count of words in a text.
 
@@ -86,16 +89,21 @@ def count_words(file_name):
                 #If so, delete word
                 #del word_count[word]
 
-    #Return dictionary of word_count
+    #Return dictionary of word_count sorted by key only
 
     #for k, v in sorted(word_count.items()):
 
         #print(k, v)
 
+    #Return dictionary of word_count sorted:
+    #Descending by value
+    #Ascending by key
     sort_word_count = sorted(word_count.items(), key = lambda x: (-x[1], x[0]))
 
+    #Loop through sort_word_count
     for i in sort_word_count:
         
+        #Print key and value
         print(i[0], i[1])
 
 count_words(filename)
