@@ -26,10 +26,16 @@ def count_words(file_name):
                 word_count[upper_word_no_end] = word_count.get(upper_word_no_end, 0) +1
         
    
-            print(word_count)
-        if word[0].isupper() == True:
 
-            del word_count[word]
+            if word[0].isupper() == True:
+
+                del word_count[word]
+
+                if word[-1].isalpha() == False:
+                    continue
+
+            elif word[-1].isalpha() == False:
+                del word_count[word]
 
 
         
